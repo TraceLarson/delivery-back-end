@@ -7,7 +7,7 @@ export default class RequestLogService implements IRequestLogService {
   // region Constructors
 
   constructor(unitOfWork: IUnitOfWork) {
-    this.RequestLogUnitOfWork = unitOfWork;
+    this.RequestLogUnitOfWork = unitOfWork ?? NullUnitOfWork.Singleton;
   }
 
   // endregion

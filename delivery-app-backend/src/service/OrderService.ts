@@ -7,7 +7,7 @@ export default class OrderService implements IOrderService {
   // region Constructors
 
   constructor(unitOfWork: IUnitOfWork) {
-    this.OrderUnitOfWork = unitOfWork;
+    this.OrderUnitOfWork = unitOfWork ?? NullUnitOfWork.Singleton;
   }
   FindByrecordId<Order>(recordId: string): Promise<SelectResultType<Order | null>> {
     throw new Error('Method not implemented.');

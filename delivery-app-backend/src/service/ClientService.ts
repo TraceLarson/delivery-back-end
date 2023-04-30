@@ -8,7 +8,7 @@ export default class ClientService implements IClientService {
   // region Constructors
 
   constructor(unitOfWork: IUnitOfWork) {
-    this.ClientUnitOfWork = unitOfWork;
+    this.ClientUnitOfWork = unitOfWork ?? NullUnitOfWork.Singleton;
   }
   // endregion
 

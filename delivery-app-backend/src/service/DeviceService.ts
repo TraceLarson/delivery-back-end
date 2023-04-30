@@ -7,7 +7,7 @@ export default class DeviceService implements IDeviceService {
   // region Constructors
 
   constructor(unitOfWork: IUnitOfWork) {
-    this.DeviceUnitOfWork = unitOfWork;
+    this.DeviceUnitOfWork = unitOfWork ?? NullUnitOfWork.Singleton;
   }
 
   // endregion

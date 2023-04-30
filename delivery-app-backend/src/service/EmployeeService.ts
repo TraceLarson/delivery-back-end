@@ -7,7 +7,7 @@ export default class EmployeeService implements IEmployeeService {
   // region Constructors
 
   constructor(unitOfWork: IUnitOfWork) {
-    this.EmployeeUnitOfWork = unitOfWork;
+    this.EmployeeUnitOfWork = unitOfWork ?? NullUnitOfWork.Singleton;
   }
 
   // endregion

@@ -7,7 +7,7 @@ export default class UserLogService implements IUserLogService {
   // region Constructors
 
   constructor(unitOfWork: IUnitOfWork) {
-    this.UserLogUnitOfWork = unitOfWork;
+    this.UserLogUnitOfWork = unitOfWork ?? NullUnitOfWork.Singleton;
   }
 
   // endregion
