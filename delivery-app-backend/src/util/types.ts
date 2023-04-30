@@ -1,3 +1,5 @@
+import { Tables } from './DBConstants';
+
 export type SqlStatementType = string;
 export type OperationType = string;
 
@@ -41,7 +43,13 @@ export type AddResultType = {
 export type InsertResultType = {
   status: number;
   result: AddResultType | null;
-  error: string | null;;    
+  error: string | null;
+};
+
+export type SelectResultType<T> = {
+  status: number | null;
+  result: T[] | null;
+  error: string | null;
 };
 
 export type Await<T> = T extends {
@@ -49,3 +57,8 @@ export type Await<T> = T extends {
 }
   ? U
   : T;
+
+export type ConnectionContext = {
+  Columns: string[];
+  Table: Tables;
+};

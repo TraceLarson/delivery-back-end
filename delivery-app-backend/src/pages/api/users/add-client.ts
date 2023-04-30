@@ -1,7 +1,7 @@
 import Client from '../../../domain/implementation/Client';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { ClientType } from '../../../../types';
-import UnitOfWork from '@/service/UnitOfWork';
+import { ClientType } from '../../../util/types';
+import UnitOfWork from '@/service/persistence/UnitOfWork';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const client: Client = await CreateClientObject(req.body);

@@ -1,4 +1,4 @@
-import { OperationType, SqlStatementType } from '../../types';
+import { OperationType } from './types';
 
 export const myHeaders = new Headers();
 myHeaders.append('Content-Type', 'application/json');
@@ -20,6 +20,7 @@ export enum Tables {
   USERS_LOGS_TABLE = 'Users.Logs',
   ORDERS_TABLE = 'Requests.Orders',
   REQUESTS_LOGS_TABLE = 'Requests.Logs',
+  Client = 'Client',
 }
 
 export enum Operations {
@@ -31,5 +32,10 @@ export enum Operations {
   BULK_INSERT = 'csv_url_load',
 }
 
-export const EmployeeColumns: string[] = ['firstName', 'lastName', 'email', 'password', 'city', 'state', 'zipCode'];
+// define the columns for each table
 export const ClientColumns: string[] = ['firstName', 'lastName', 'email', 'password', 'city', 'state', 'zipCode'];
+export const DeviceColumns: string[] = ['firstName', 'lastName', 'email', 'password', 'city', 'state', 'zipCode'];
+export const EmployeeColumns: string[] = ['firstName', 'lastName', 'email', 'password', 'city', 'state', 'zipCode'];
+export const OrderColumns: string[] = ['firstName', 'lastName', 'email', 'password', 'city', 'state', 'zipCode'];
+export const RequestLogColumns: string[] = ['firstName', 'lastName', 'email', 'password', 'city', 'state', 'zipCode'];
+export const UserLogColumns: string[] = ['firstName', 'lastName', 'email', 'password', 'city', 'state', 'zipCode'];

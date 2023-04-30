@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { UserLoginDataType } from '../../../../types';
+import { UserLoginDataType } from '../../../util/types';
 import { requestOptions } from '../../../util/DBConstants';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

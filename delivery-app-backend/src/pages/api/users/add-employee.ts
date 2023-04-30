@@ -1,7 +1,7 @@
 import Employee from '@/domain/implementation/Employee';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { EmployeeType } from '../../../../types';
-import UnitOfWork from '@/service/UnitOfWork';
+import { EmployeeType } from '../../../util/types';
+import UnitOfWork from '@/service/persistence/UnitOfWork';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const employee: Employee = await CreateEmployeeObject(req.body);

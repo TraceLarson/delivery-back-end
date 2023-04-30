@@ -1,4 +1,4 @@
-import { EmployeeType } from '../../../types';
+import { EmployeeType } from '../../util/types';
 import AbstractUser from './abstract/AbstractUser';
 
 export default class Employee extends AbstractUser implements EmployeeType {

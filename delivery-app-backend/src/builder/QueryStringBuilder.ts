@@ -9,8 +9,19 @@ export default class QueryStringBuilder {
 
   // region Public Methods
 
-  public static buildSelectQuery(tableName: string, columns: string[]): string {
+  public static buildSelectQuery<T>(tableName: string, columns: string[]): string {
     let query: string = `SELECT ${columns.join(', ')} FROM ${tableName}`;
+    return query;
+  }
+
+  public static buildFindByRecordId<T>(tableName: string, columns: string[], recordId: string): string {
+    let query: string = `SELECT ${columns.join(', ')} FROM ${tableName} WHERE RecordId = '${recordId}'`;
+    return query;
+  }
+
+  public static buildFindMatching<T>(tableName: string, columns: string[], entity: T): string {
+    const values: (string | undefined)[] = ObjectToQueryString<T>(entity, columns);
+    const query: string = `SELECT ${columns.join(', ')} FROM ${tableName} WHERE ${columns.join(', ')} = ${values.join(', ')}`;
     return query;
   }
 

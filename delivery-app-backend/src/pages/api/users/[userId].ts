@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { ClientType } from '../../../../types';
+import { ClientType } from '../../../util/types';
 import { requestOptions } from '../../../util/DBConstants';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
