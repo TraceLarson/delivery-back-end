@@ -13,11 +13,11 @@ export default interface Repository<T> {
 
   FindAll<T>(): Promise<SelectResultType<T>>;
 
-  FindUnique<T>(RecordId: string): Promise<SelectResultType<T>>;
+  FindUnique<T>(recordId: string): Promise<SelectResultType<T>>;
 
-  Remove<T>(RecordId: string): Promise<DeleteResultType<T>>;
+  Remove<T>(recordId: string): Promise<DeleteResultType<T>>;
 
-  Update<T>(entity: T): Promise<UpdateResultType<T>>;
+  Update<T>(entity: T, recordId: string): Promise<UpdateResultType<T>>;
 
   // endregion
 }

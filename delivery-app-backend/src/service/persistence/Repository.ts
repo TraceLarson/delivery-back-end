@@ -88,7 +88,7 @@ export default class Repository<T> implements IRepository<T> {
       });
   }
 
-  public async Update<T>(entity: T): Promise<UpdateResultType<T>> {
+  public async Update<T>(entity: T, recordId: string): Promise<UpdateResultType<T>> {
     const queryString = QueryStringBuilder.buildUpdateQuery<T>(this.Context.Table, this.Context.Columns, entity, recordId);
     const operationString: string = new OperationStringBuilder(Operations.SQL, queryString).Build();
 

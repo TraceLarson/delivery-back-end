@@ -25,11 +25,11 @@ export default class NullRepository<T> implements IRepository<T> {
     throw new Error('Method not implemented.');
   }
 
-  FindUnique<T>(RecordId: string): Promise<SelectResultType<T>> {
+  FindUnique<T>(recordId: string): Promise<SelectResultType<T>> {
     throw new Error('Method not implemented.');
   }
 
-  Remove<T>(RecordId: string): Promise<T> {
+  Remove<T>(recordId: string): Promise<T> {
     throw new Error('Method not implemented.');
   }
 
