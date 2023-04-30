@@ -1,4 +1,4 @@
-import { ConnectionContext, InsertResultType, SelectResultType } from '@/util/types';
+import { ConnectionContext, DeleteResultType, InsertResultType, SelectResultType, UpdateResultType } from '@/util/types';
 
 export default interface Repository<T> {
   // region Properties
@@ -15,9 +15,9 @@ export default interface Repository<T> {
 
   FindUnique<T>(RecordId: string): Promise<SelectResultType<T>>;
 
-  Remove<T>(RecordId: string): Promise<T>;
+  Remove<T>(RecordId: string): Promise<DeleteResultType<T>>;
 
-  Update<T>(entity: T): Promise<T>;
+  Update<T>(entity: T): Promise<UpdateResultType<T>>;
 
   // endregion
 }

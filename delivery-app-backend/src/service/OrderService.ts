@@ -9,6 +9,9 @@ export default class OrderService implements IOrderService {
   constructor(unitOfWork: IUnitOfWork) {
     this.OrderUnitOfWork = unitOfWork;
   }
+  FindByrecordId<Order>(recordId: string): Promise<SelectResultType<Order | null>> {
+    throw new Error('Method not implemented.');
+  }
 
   // endregion
 
@@ -32,12 +35,24 @@ export default class OrderService implements IOrderService {
 
   // region Behavior
 
-  public async FindAll<Order>(): Promise<SelectResultType<Order>> {
-    return this.OrderUnitOfWork.Orders.FindAll<Order>();
+  public async AddOrder<Order>(order: Order): Promise<InsertResultType> {
+    return await this.OrderUnitOfWork.Orders.Add<Order>(order);
   }
 
-  public FindByRecordId<Order>(RecordId: string): Promise<SelectResultType<Order>> {
-    return this.OrderUnitOfWork.Orders.FindUnique<Order>(RecordId);
+  public async FindAll<Order>(): Promise<SelectResultType<Order | null>> {
+    return await this.OrderUnitOfWork.Orders.FindAll<Order>();
+  }
+
+  public async FindByRecordId<Order>(recordId: string): Promise<SelectResultType<Order | null>> {
+    return await this.OrderUnitOfWork.Orders.FindUnique<Order>(recordId);
+  }
+
+  public async RemoveOrder<Order>(recordId: string): Promise<DeleteResultType<Order | null>> {
+    return await this.OrderUnitOfWork.Orders.Remove<Order>(recordId);
+  }
+
+  public async UpdateOrder<Order>(order: Order): Promise<UpdateResultType<Order | null>> {
+    return await this.OrderUnitOfWork.Orders.Update<Order>(order);
   }
 
   // endregion

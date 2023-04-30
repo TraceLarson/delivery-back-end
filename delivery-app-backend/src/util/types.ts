@@ -52,6 +52,17 @@ export type SelectResultType<T> = {
   error: string | null;
 };
 
+export type DeleteResultType<T> = {
+  status: number | null;
+  result: any | T | null;
+  error: string | null;
+};
+
+export type UpdateResultType<T> = {
+  status: number | null;
+  result: any | T | null;
+  error: string | null;
+};
 export type Await<T> = T extends {
   then(onfulfilled?: (value: infer U) => unknown): unknown;
 }

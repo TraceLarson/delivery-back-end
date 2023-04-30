@@ -1,4 +1,4 @@
-import { SelectResultType } from '@/util/types';
+import { DeleteResultType, SelectResultType, UpdateResultType } from '@/util/types';
 import IEmployeeService from './interface/IEmployeeService';
 import IUnitOfWork from './interface/IUnitOfWork';
 import NullUnitOfWork from './null/NullUnitOfWork';
@@ -32,12 +32,24 @@ export default class EmployeeService implements IEmployeeService {
 
   // region Behavior
 
-  public async FindAll<Employee>(): Promise<SelectResultType<Employee>> {
-    return this.EmployeeUnitOfWork.Employees.FindAll<Employee>();
+  public async AddEmployee<Employee>(employee: Employee): Promise<InsertResultType> {
+    return await this.EmployeeUnitOfWork.Employees.Add<Employee>(employee);
   }
 
-  public FindByRecordId<Employee>(RecordId: string): Promise<SelectResultType<Employee>> {
-    return this.EmployeeUnitOfWork.Employees.FindUnique<Employee>(RecordId);
+  public async FindAll<Employee>(): Promise<SelectResultType<Employee | null>> {
+    return await this.EmployeeUnitOfWork.Employees.FindAll<Employee>();
+  }
+
+  public async FindByRecordId<Employee>(recordId: string): Promise<SelectResultType<Employee | null>> {
+    return await this.EmployeeUnitOfWork.Employees.FindUnique<Employee>(recordId);
+  }
+
+  public async RemoveEmployee<Employee>(recordId: string): Promise<DeleteResultType<Employee | null>> {
+    return await this.EmployeeUnitOfWork.Employees.Remove<Employee>(recordId);
+  }
+
+  public async UpdateEmployee<Employee>(employee: Employee): Promise<UpdateResultType<Employee | null>> {
+    return await this.EmployeeUnitOfWork.Employees.Update<Employee>(employee);
   }
 
   // endregion

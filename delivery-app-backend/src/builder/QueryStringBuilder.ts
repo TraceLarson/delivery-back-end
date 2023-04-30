@@ -41,13 +41,23 @@ export default class QueryStringBuilder {
     return query;
   }
 
-  public static buildUpdateQuery(tableName: string, columns: string[], values: string[]): string {
-    let query: string = `UPDATE ${tableName} SET ${columns.join(', ')} = ${values.join(', ')}`;
+  public static buildUpdateQuery<T>(tableName: string, columns: string[], objectToUpdate: T, recordId: string): string | null {
+    if (objectToUpdate == null) {
+      throw new Error('objectToInsert cannot be null');
+      return null;
+    }
+
+    const values: (string | undefined)[] = ObjectToQueryString<T>(objectToUpdate, columns);
+    if (values == undefined) {
+      throw new Error('objectToInsert did not contain any values');
+      return null;
+    }
+    let query: string = `UPDATE ${tableName} SET ${columns.join(', ')} = ${values.join(', ')} WHERE RecordId = '${recordId}'`;
     return query;
   }
 
-  public static buildDeleteQuery(tableName: string, columns: string[], values: string[]): string {
-    let query: string = `DELETE FROM ${tableName} WHERE ${columns.join(', ')} = ${values.join(', ')}`;
+  public static buildDeleteQuery(tableName: string, columns: string[], recordId: string): string {
+    let query: string = `DELETE FROM ${tableName} WHERE RecordId = '${recordId}';}`;
     return query;
   }
 

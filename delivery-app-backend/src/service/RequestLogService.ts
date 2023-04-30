@@ -1,4 +1,4 @@
-import { SelectResultType } from '@/util/types';
+import { DeleteResultType, SelectResultType, UpdateResultType } from '@/util/types';
 import IRequestLogService from './interface/IRequestLogService';
 import IUnitOfWork from './interface/IUnitOfWork';
 import NullUnitOfWork from './null/NullUnitOfWork';
@@ -32,12 +32,24 @@ export default class RequestLogService implements IRequestLogService {
 
   // region Behavior
 
-  public async FindAll<RequestLog>(): Promise<SelectResultType<RequestLog>> {
-    return this.RequestLogUnitOfWork.RequestLogs.FindAll<RequestLog>();
+  public async AddRequestLog<RequestLog>(requestLog: RequestLog): Promise<InsertResultType> {
+    return await this.RequestLogUnitOfWork.RequestLogs.Add<RequestLog>(requestLog);
   }
 
-  public FindByRecordId<RequestLog>(RecordId: string): Promise<SelectResultType<RequestLog>> {
-    return this.RequestLogUnitOfWork.RequestLogs.FindUnique<RequestLog>(RecordId);
+  public async FindAll<RequestLog>(): Promise<SelectResultType<RequestLog | null>> {
+    return await this.RequestLogUnitOfWork.RequestLogs.FindAll<RequestLog>();
+  }
+
+  public async FindByRecordId<RequestLog>(recordId: string): Promise<SelectResultType<RequestLog | null>> {
+    return await this.RequestLogUnitOfWork.RequestLogs.FindUnique<RequestLog>(recordId);
+  }
+
+  public async RemoveRequestLog<RequestLog>(recordId: string): Promise<DeleteResultType<RequestLog | null>> {
+    return await this.RequestLogUnitOfWork.RequestLogs.Remove<RequestLog>(recordId);
+  }
+
+  public async UpdateRequestLog<RequestLog>(requestLog: RequestLog): Promise<UpdateResultType<RequestLog | null>> {
+    return await this.RequestLogUnitOfWork.RequestLogs.Update<RequestLog>(requestLog);
   }
 
   // endregion

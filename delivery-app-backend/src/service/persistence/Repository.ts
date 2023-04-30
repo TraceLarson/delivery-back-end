@@ -4,7 +4,7 @@ import Client from '@/domain/implementation/Client';
 import Employee from '@/domain/implementation/Employee';
 import IRepository from '@/service/interface/IRepository';
 import { Tables, ClientColumns, Operations, requestOptions, EmployeeColumns } from '@/util/DBConstants';
-import { AddResultType, ConnectionContext, InsertResultType } from '@/util/types';
+import { AddResultType, ConnectionContext, DeleteResultType, InsertResultType, UpdateResultType } from '@/util/types';
 import { SelectResultType } from '../../util/types';
 
 export default class Repository<T> implements IRepository<T> {
@@ -72,12 +72,36 @@ export default class Repository<T> implements IRepository<T> {
       });
   }
 
-  public async Remove<T>(RecordId: string): Promise<T> {
-    return {} as T;
+  public async Remove<T>(recordId: string): Promise<DeleteResultType<T>> {
+    const queryString = QueryStringBuilder.buildDeleteQuery<T>(this.Context.Table, this.Context.Columns, recordId);
+    const operationString: string = new OperationStringBuilder(Operations.SQL, queryString).Build();
+
+    return await fetch(`${process.env.BASEURL}`, requestOptions(operationString))
+      .then((response) => response.text())
+      .then((result) => {
+        const parsedResult: any = JSON.parse(result);
+        return { status: 201, result: parsedResult, error: null };
+      })
+      .catch((error) => {
+        console.log('error', error);
+        return { status: 500, result: null, error: error };
+      });
   }
 
-  public async Update<T>(entity: T): Promise<T> {
-    return {} as T;
+  public async Update<T>(entity: T): Promise<UpdateResultType<T>> {
+    const queryString = QueryStringBuilder.buildUpdateQuery<T>(this.Context.Table, this.Context.Columns, entity, recordId);
+    const operationString: string = new OperationStringBuilder(Operations.SQL, queryString).Build();
+
+    return await fetch(`${process.env.BASEURL}`, requestOptions(operationString))
+      .then((response) => response.text())
+      .then((result) => {
+        const parsedResult: any = JSON.parse(result);
+        return { status: 201, result: parsedResult, error: null };
+      })
+      .catch((error) => {
+        console.log('error', error);
+        return { status: 500, result: null, error: error };
+      });
   }
 
   // endregion

@@ -1,7 +1,7 @@
 import IUserLogService from './interface/IUserLogService';
 import IUnitOfWork from './interface/IUnitOfWork';
 import NullUnitOfWork from './null/NullUnitOfWork';
-import { SelectResultType } from '@/util/types';
+import { DeleteResultType, InsertResultType, SelectResultType, UpdateResultType } from '@/util/types';
 
 export default class UserLogService implements IUserLogService {
   // region Constructors
@@ -32,12 +32,24 @@ export default class UserLogService implements IUserLogService {
 
   // region Behavior
 
-  public async FindAll<UserLog>(): Promise<SelectResultType<UserLog>> {
-    return this.UserLogUnitOfWork.UserLogs.FindAll<UserLog>();
+  public async AddUserLog<UserLog>(userLog: UserLog): Promise<InsertResultType> {
+    return await this.UserLogUnitOfWork.UserLogs.Add<UserLog>(userLog);
   }
 
-  public FindByRecordId<UserLog>(RecordId: string): Promise<SelectResultType<UserLog>> {
-    return this.UserLogUnitOfWork.UserLogs.FindUnique<UserLog>(RecordId);
+  public async FindAll<UserLog>(): Promise<SelectResultType<UserLog | null>> {
+    return await this.UserLogUnitOfWork.UserLogs.FindAll<UserLog>();
+  }
+
+  public async FindByRecordId<UserLog>(recordId: string): Promise<SelectResultType<UserLog | null>> {
+    return await this.UserLogUnitOfWork.UserLogs.FindUnique<UserLog>(recordId);
+  }
+
+  public async RemoveUserLog<UserLog>(recordId: string): Promise<DeleteResultType<UserLog | null>> {
+    return await this.UserLogUnitOfWork.UserLogs.Remove<UserLog>(recordId);
+  }
+
+  public async UpdateUserLog<UserLog>(userLog: UserLog): Promise<UpdateResultType<UserLog | null>> {
+    return await this.UserLogUnitOfWork.UserLogs.Update<UserLog>(userLog);
   }
 
   // endregion
