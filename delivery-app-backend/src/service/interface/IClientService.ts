@@ -12,7 +12,7 @@ export default interface IClientService {
 
   RemoveClient<Client>(recordId: string): Promise<DeleteResultType<Client | null>>;
 
-  UpdateClient<Client>(client: Client): Promise<UpdateResultType<Client | null>>;
+  UpdateClient<Client>(client: Client, recordId: string): Promise<UpdateResultType<Client | null>>;
 
   // endregion
 }

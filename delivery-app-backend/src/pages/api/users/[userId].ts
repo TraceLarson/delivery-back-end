@@ -28,18 +28,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return result.result;
   });
   return res.status(201).json({ employees: foundEmployees, clients: foundClients });
-
-  // var raw = JSON.stringify({
-  //   operation: 'sql',
-  //   sql: `SELECT * FROM Users.Clients where RecordId = "${userId}"`,
-  // });
-
-  // fetch(`${process.env.BASEURL}`, requestOptions(raw))
-  //   .then((response) => response.text())
-  //   .then((result) => {
-  //     console.log(result);
-  //     const parsedResult: ClientType = JSON.parse(result);
-  //     res.status(201).json(parsedResult);
-  //   })
-  //   .catch((error) => console.log('error', error));
 }

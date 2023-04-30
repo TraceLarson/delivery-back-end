@@ -2,10 +2,16 @@ import Client from '../../../domain/implementation/Client';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { ClientType } from '../../../util/types';
 import UnitOfWork from '@/service/persistence/UnitOfWork';
+import ServiceFactory from '@/service/ServiceFactory';
+
+const unitOfWork = new UnitOfWork();
+const serviceFactory = new ServiceFactory();
+const clientService = serviceFactory.CreateClientService(unitOfWork);
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const client: Client = await CreateClientObject(req.body);
-  const response = await UnitOfWork.Singleton.AddClient(client);
+  const response = await clientService.AddClient<Client>(client);
+
   res.status(response.status).json(response.result || response.error);
 }
 

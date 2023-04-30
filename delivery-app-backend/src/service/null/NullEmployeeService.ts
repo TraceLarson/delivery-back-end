@@ -41,7 +41,7 @@ export default class NullEmployeeService implements IEmployeeService {
     });
   }
 
-  public async UpdateEmployee<Employee>(employee: Employee): Promise<UpdateResultType<Employee | null>> {
+  public async UpdateEmployee<Employee>(employee: Employee, recordId: string): Promise<UpdateResultType<Employee | null>> {
     return new Promise<UpdateResultType<null>>((resolve) => {
       resolve({} as UpdateResultType<null>);
     });

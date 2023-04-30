@@ -39,7 +39,7 @@ export default class HarperUnitOfWork implements IUnitOfWork {
   // region Public Methods
 
   CreateUowRepository<T>(): IRepository<T> {
-    return new Repository<T>(new DbConnectionContext<T>() as ConnectionContext);
+    return new Repository<T>(new DbConnectionContext<T>({} as T) as ConnectionContext);
   }
 
   // endregion

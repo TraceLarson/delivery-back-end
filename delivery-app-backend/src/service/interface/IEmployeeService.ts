@@ -12,7 +12,7 @@ export default interface IEmployeeService {
 
   RemoveEmployee<Employee>(recordId: string): Promise<DeleteResultType<Employee | null>>;
 
-  UpdateEmployee<Employee>(employee: Employee): Promise<UpdateResultType<Employee | null>>;
+  UpdateEmployee<Employee>(employee: Employee, recordId: string): Promise<UpdateResultType<Employee | null>>;
 
   // endregion
 }

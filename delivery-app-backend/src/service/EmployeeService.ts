@@ -1,4 +1,4 @@
-import { DeleteResultType, SelectResultType, UpdateResultType } from '@/util/types';
+import { DeleteResultType, InsertResultType, SelectResultType, UpdateResultType } from '@/util/types';
 import IEmployeeService from './interface/IEmployeeService';
 import IUnitOfWork from './interface/IUnitOfWork';
 import NullUnitOfWork from './null/NullUnitOfWork';
@@ -48,8 +48,8 @@ export default class EmployeeService implements IEmployeeService {
     return await this.EmployeeUnitOfWork.Employees.Remove<Employee>(recordId);
   }
 
-  public async UpdateEmployee<Employee>(employee: Employee): Promise<UpdateResultType<Employee | null>> {
-    return await this.EmployeeUnitOfWork.Employees.Update<Employee>(employee);
+  public async UpdateEmployee<Employee>(employee: Employee, recordId: string): Promise<UpdateResultType<Employee | null>> {
+    return await this.EmployeeUnitOfWork.Employees.Update<Employee>(employee, recordId);
   }
 
   // endregion

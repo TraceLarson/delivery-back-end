@@ -48,8 +48,8 @@ export default class ClientService implements IClientService {
     return await this.ClientUnitOfWork.Clients.Remove<Client>(recordId);
   }
 
-  public async UpdateClient<Client>(client: Client): Promise<UpdateResultType<Client | null>> {
-    return await this.ClientUnitOfWork.Clients.Update<Client>(client);
+  public async UpdateClient<Client>(client: Client, recordId: string): Promise<UpdateResultType<Client | null>> {
+    return await this.ClientUnitOfWork.Clients.Update<Client>(client, recordId);
   }
 
   // endregion

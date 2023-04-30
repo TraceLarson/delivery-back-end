@@ -16,6 +16,7 @@ export default class QueryStringBuilder {
 
   public static buildFindByRecordId<T>(tableName: string, columns: string[], recordId: string): string {
     let query: string = `SELECT ${columns.join(', ')} FROM ${tableName} WHERE RecordId = '${recordId}'`;
+    console.log(`buildFindByRecordId: ${query}`);
     return query;
   }
 

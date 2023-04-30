@@ -11,10 +11,9 @@ import { ConnectionContext } from '../../util/types';
 export default class DbConnectionContext<T> {
   // region Constructors
 
-  constructor() {
-    this.Entity = {} as T;
-    this.Columns = this.GetDbColumns<T>();
-    this.Table = this.GetTableName<T>();
+  constructor(table: Tables) {
+    this.Columns = this.GetDbColumns<T>(table);
+    this.Table = table;
   }
 
   // endregion
@@ -27,8 +26,6 @@ export default class DbConnectionContext<T> {
 
   // region Private Properties
 
-  private Entity: T;
-
   public Table: string;
 
   public Columns: string[];
@@ -37,39 +34,21 @@ export default class DbConnectionContext<T> {
 
   // region Helper Methods
 
-  private GetDbColumns<T>(): string[] {
-    switch (this.Entity) {
-      case Client:
+  private GetDbColumns<T>(table: Tables): string[] {
+    switch (table) {
+      case Tables.CLIENTS_TABLE:
         return ClientColumns;
-      case Device:
+      case Tables.DEVICES_TABLE:
         return DeviceColumns;
-      case Employee:
+      case Tables.EMPLOYEES_TABLE:
         return EmployeeColumns;
-      case Order:
+      case Tables.ORDERS_TABLE:
         return OrderColumns;
-      case RequestLog:
+      case Tables.REQUESTS_LOGS_TABLE:
         return RequestLogColumns;
-      case UserLog:
+      case Tables.USERS_LOGS_TABLE:
       default:
         return UserLogColumns;
-    }
-  }
-
-  private GetTableName<T>(): Tables {
-    switch (this.Entity) {
-      case Client:
-        return Tables.CLIENTS_TABLE;
-      case Device:
-        return Tables.DEVICES_TABLE;
-      case Employee:
-        return Tables.EMPLOYEES_TABLE;
-      case Order:
-        return Tables.ORDERS_TABLE;
-      case RequestLog:
-        return Tables.REQUESTS_LOGS_TABLE;
-      case UserLog:
-      default:
-        return Tables.USERS_LOGS_TABLE;
     }
   }
 
