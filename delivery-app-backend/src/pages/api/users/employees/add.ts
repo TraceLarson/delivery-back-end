@@ -1,23 +1,23 @@
-import Client from '../../../domain/implementation/Client';
+import Employee from '@/domain/implementation/Employee';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { ClientType } from '../../../util/types';
+import { EmployeeType } from '../../../../util/types';
 import UnitOfWork from '@/service/persistence/UnitOfWork';
 import ServiceFactory from '@/service/ServiceFactory';
 
 const unitOfWork = new UnitOfWork();
 const serviceFactory = new ServiceFactory();
-const clientService = serviceFactory.CreateClientService(unitOfWork);
+const employeeService = serviceFactory.CreateEmployeeService(unitOfWork);
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const client: Client = await CreateClientObject(req.body);
-  const response = await clientService.AddClient<Client>(client);
+  const employee: Employee = await CreateEmployeeObject(req.body);
+  const response = await employeeService.AddEmployee<Employee>(employee);
 
   res.status(response.status).json(response.result || response.error);
 }
 
-async function CreateClientObject(client: ClientType): Promise<Client> {
+async function CreateEmployeeObject(client: EmployeeType): Promise<Employee> {
   console.log(client);
-  return await new Client(
+  return await new Employee(
     client.__createdtime__,
     client.__updatedtime__,
     client.password,

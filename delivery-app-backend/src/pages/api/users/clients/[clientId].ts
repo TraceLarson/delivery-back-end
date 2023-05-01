@@ -12,16 +12,16 @@ const serviceFactory: IServiceFactory = new ServiceFactory();
 const unitOfWork: IUnitOfWork = new UnitOfWork();
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { userId } = req.query;
+  const { clientId } = req.query;
   const employeeService: IEmployeeService = serviceFactory.CreateEmployeeService(unitOfWork);
   const clientService: IClientService = serviceFactory.CreateClientService(unitOfWork);
 
-  const foundEmployees = await employeeService.FindByRecordId<Employee>(userId as string).then((result) => {
+  const foundEmployees = await employeeService.FindByRecordId<Employee>(clientId as string).then((result) => {
     console.log(`Found ${result.result?.length} employees`);
     return result.result;
   });
 
-  const foundClients = await clientService.FindByRecordId<Client>(userId as string).then((result) => {
+  const foundClients = await clientService.FindByRecordId<Client>(clientId as string).then((result) => {
     console.log(`Found ${result.result?.length} clients`);
     return result.result;
   });

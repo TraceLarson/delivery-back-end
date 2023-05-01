@@ -12,7 +12,7 @@ export default interface IDeviceService {
 
   RemoveDevice<Device>(recordId: string): Promise<DeleteResultType<Device | null>>;
 
-  UpdateDevice<Device>(device: Device): Promise<UpdateResultType<Device | null>>;
+  UpdateDevice<Device>(device: Device, recordId: string): Promise<UpdateResultType<Device | null>>;
 
   // endregion
 }

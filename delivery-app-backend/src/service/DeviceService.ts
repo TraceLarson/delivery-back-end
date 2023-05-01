@@ -1,55 +1,37 @@
 import { DeleteResultType, InsertResultType, SelectResultType, UpdateResultType } from '@/util/types';
 import IDeviceService from './interface/IDeviceService';
 import IUnitOfWork from './interface/IUnitOfWork';
-import NullUnitOfWork from './null/NullUnitOfWork';
+import AbstractService from './AbstractService';
 
-export default class DeviceService implements IDeviceService {
+export default class DeviceService extends AbstractService implements IDeviceService {
   // region Constructors
 
   constructor(unitOfWork: IUnitOfWork) {
-    this.DeviceUnitOfWork = unitOfWork ?? NullUnitOfWork.Singleton;
+    super(unitOfWork);
   }
-
-  // endregion
-
-  // region Public Properties
-
-  public get DeviceUnitOfWork(): IUnitOfWork {
-    return this._DeviceUnitOfWork;
-  }
-
-  public set DeviceUnitOfWork(value: IUnitOfWork) {
-    this._DeviceUnitOfWork = value;
-  }
-
-  // endregion
-
-  // region Private Properties
-
-  private _DeviceUnitOfWork: IUnitOfWork = NullUnitOfWork.Singleton;
 
   // endregion
 
   // region Behavior
 
   public async AddDevice<Device>(device: Device): Promise<InsertResultType> {
-    return await this.DeviceUnitOfWork.Devices.Add<Device>(device);
+    return await this.unitOfWork.Devices.Add<Device>(device);
   }
 
   public async FindAll<Device>(): Promise<SelectResultType<Device | null>> {
-    return await this.DeviceUnitOfWork.Devices.FindAll<Device>();
+    return await this.unitOfWork.Devices.FindAll<Device>();
   }
 
   public async FindByRecordId<Device>(recordId: string): Promise<SelectResultType<Device | null>> {
-    return await this.DeviceUnitOfWork.Devices.FindUnique<Device>(recordId);
+    return await this.unitOfWork.Devices.FindUnique<Device>(recordId);
   }
 
   public async RemoveDevice<Device>(recordId: string): Promise<DeleteResultType<Device | null>> {
-    return await this.DeviceUnitOfWork.Devices.Remove<Device>(recordId);
+    return await this.unitOfWork.Devices.Remove<Device>(recordId);
   }
 
-  public async UpdateDevice<Device>(device: Device): Promise<UpdateResultType<Device | null>> {
-    return await this.DeviceUnitOfWork.Devices.Update<Device>(device);
+  public async UpdateDevice<Device>(device: Device, recordId: string): Promise<UpdateResultType<Device | null>> {
+    return await this.unitOfWork.Devices.Update<Device>(device, recordId);
   }
 
   // endregion

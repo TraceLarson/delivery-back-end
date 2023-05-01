@@ -13,7 +13,7 @@ export default interface IRequestLogService {
 
   RemoveRequestLog<RequestLog>(recordId: string): Promise<DeleteResultType<RequestLog | null>>;
 
-  UpdateRequestLog<RequestLog>(requestLog: RequestLog): Promise<UpdateResultType<RequestLog | null>>;
+  UpdateRequestLog<RequestLog>(requestLog: RequestLog, recordId: string): Promise<UpdateResultType<RequestLog | null>>;
 
   // endregion
 }

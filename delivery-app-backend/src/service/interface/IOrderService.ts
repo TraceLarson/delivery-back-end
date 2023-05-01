@@ -12,7 +12,7 @@ export default interface IOrderService {
 
   RemoveOrder<Order>(recordId: string): Promise<DeleteResultType<Order | null>>;
 
-  UpdateOrder<Order>(order: Order): Promise<UpdateResultType<Order | null>>;
+  UpdateOrder<Order>(order: Order, recordId: string): Promise<UpdateResultType<Order | null>>;
 
   // endregion
 }

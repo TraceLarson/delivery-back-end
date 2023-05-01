@@ -12,7 +12,7 @@ export default interface IUserLogService {
 
   RemoveUserLog<UserLog>(recordId: string): Promise<DeleteResultType<UserLog | null>>;
 
-  UpdateUserLog<UserLog>(userLog: UserLog): Promise<UpdateResultType<UserLog | null>>;
+  UpdateUserLog<UserLog>(userLog: UserLog, recordId: string): Promise<UpdateResultType<UserLog | null>>;
 
   // endregion
 }
