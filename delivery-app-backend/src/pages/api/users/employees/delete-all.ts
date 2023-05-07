@@ -3,7 +3,6 @@ import UnitOfWork from '@/service/persistence/UnitOfWork';
 import { NextApiRequest, NextApiResponse } from 'next';
 import Employee from '@/domain/implementation/Employee';
 import { DeleteResultType } from '@/util/types';
-import Employee from '@/domain/implementation/Employee';
 
 const unitOfWork = new UnitOfWork();
 const serviceFactory = new ServiceFactory();
