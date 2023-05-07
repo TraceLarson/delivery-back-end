@@ -1,26 +1,27 @@
 import ServiceFactory from '@/service/ServiceFactory';
 import UnitOfWork from '@/service/persistence/UnitOfWork';
 import { NextApiRequest, NextApiResponse } from 'next';
-import Client from '@/domain/implementation/Client';
+import Employee from '@/domain/implementation/Employee';
 import { DeleteResultType } from '@/util/types';
+import Employee from '@/domain/implementation/Employee';
 
 const unitOfWork = new UnitOfWork();
 const serviceFactory = new ServiceFactory();
-const clientService = serviceFactory.CreateClientService(unitOfWork);
+const employeeservice = serviceFactory.CreateEmployeeService(unitOfWork);
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const foundClients = await clientService.FindAll<Client>();
-  const clients: Client[] | null = foundClients.result;
-  console.log(`Found ${clients?.length} clients`);
+  const foundEmployees = await employeeservice.FindAll<Employee>();
+  const employees: Employee[] | null = foundEmployees.result;
+  console.log(`Found ${employees?.length} employees`);
 
-  if (clients == null || clients.length == 0) {
-    res.status(404).json(JSON.parse(foundClients.error || 'No Clients Found'));
+  if (employees == null || employees.length == 0) {
+    res.status(404).json(JSON.parse(foundEmployees.error || 'No Employees Found'));
     return;
   }
 
-  const deleteResults: Promise<DeleteResultType<Client>>[] = clients.map(async (client) => {
-    console.log(`Deleting client ${JSON.stringify(client.RecordId)}`);
-    return await clientService.RemoveClient<Client>(client.RecordId);
+  const deleteResults: Promise<DeleteResultType<Employee>>[] = employees.map(async (employee) => {
+    console.log(`Deleting employee.g ${JSON.stringify(employee.RecordId)}`);
+    return await employeeservice.RemoveEmployee<Employee>(employee.RecordId);
   });
 
   await Promise.all(deleteResults).then((results) => {

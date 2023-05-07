@@ -6,13 +6,13 @@ export default interface IEmployeeService {
 
   AddEmployee<Employee>(employee: Employee): Promise<InsertResultType>;
 
-  FindAll<Employee>(): Promise<SelectResultType<Employee | null>>;
+  FindAll<Employee>(): Promise<SelectResultType<Employee>>;
 
-  FindByRecordId<Employee>(recordId: string): Promise<SelectResultType<Employee | null>>;
+  FindByRecordId<Employee>(recordId: string): Promise<SelectResultType<Employee>>;
 
-  RemoveEmployee<Employee>(recordId: string): Promise<DeleteResultType<Employee | null>>;
+  RemoveEmployee<Employee>(recordId: string): Promise<DeleteResultType<Employee>>;
 
-  UpdateEmployee<Employee>(employee: Employee, recordId: string): Promise<UpdateResultType<Employee | null>>;
+  UpdateEmployee<Employee>(employee: Employee, recordId: string): Promise<UpdateResultType<Employee>>;
 
   // endregion
 }

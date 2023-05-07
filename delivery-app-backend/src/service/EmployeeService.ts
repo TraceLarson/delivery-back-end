@@ -18,19 +18,19 @@ export default class EmployeeService extends AbstractService implements IEmploye
     return await this.unitOfWork.Employees.Add<Employee>(employee);
   }
 
-  public async FindAll<Employee>(): Promise<SelectResultType<Employee | null>> {
+  public async FindAll<Employee>(): Promise<SelectResultType<Employee>> {
     return await this.unitOfWork.Employees.FindAll<Employee>();
   }
 
-  public async FindByRecordId<Employee>(recordId: string): Promise<SelectResultType<Employee | null>> {
+  public async FindByRecordId<Employee>(recordId: string): Promise<SelectResultType<Employee>> {
     return await this.unitOfWork.Employees.FindUnique<Employee>(recordId);
   }
 
-  public async RemoveEmployee<Employee>(recordId: string): Promise<DeleteResultType<Employee | null>> {
+  public async RemoveEmployee<Employee>(recordId: string): Promise<DeleteResultType<Employee>> {
     return await this.unitOfWork.Employees.Remove<Employee>(recordId);
   }
 
-  public async UpdateEmployee<Employee>(employee: Employee, recordId: string): Promise<UpdateResultType<Employee | null>> {
+  public async UpdateEmployee<Employee>(employee: Employee, recordId: string): Promise<UpdateResultType<Employee>> {
     return await this.unitOfWork.Employees.Update<Employee>(employee, recordId);
   }
 
