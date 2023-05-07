@@ -39,6 +39,7 @@ export default class QueryStringBuilder {
     }
 
     const query: string = `INSERT INTO ${tableName} (${columns.join(', ')}) VALUES (${values.join(', ')})`;
+    console.log(query);
     return query;
   }
 

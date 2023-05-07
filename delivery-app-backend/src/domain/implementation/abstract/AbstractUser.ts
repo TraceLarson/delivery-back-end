@@ -39,7 +39,7 @@ export default class AbstractUser {
     this.zipCode = zipCode;
     this.email = email;
     this.firstName = firstName;
-    this.RecordId = RecordId;
+    this.RecordId = RecordId || '';
   }
 
   // endregion

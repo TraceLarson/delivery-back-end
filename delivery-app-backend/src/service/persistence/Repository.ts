@@ -23,6 +23,9 @@ export default class Repository<T> implements IRepository<T> {
   // region Public Methods
 
   public async Add<T>(entity: T): Promise<InsertResultType> {
+    console.log(
+      `Inserting ${JSON.stringify(entity)} \r\n --- \r\n into ${this.Context.Table} \r\n --- \r\n with columns: ${this.Context.Columns} \r\n --- \r\n using context ${this.Context}`
+    );
     const queryString = QueryStringBuilder.buildInsertQuery<T>(this.Context.Table, this.Context.Columns, entity);
     const operationString: string = new OperationStringBuilder(Operations.SQL, queryString).Build();
 

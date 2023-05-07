@@ -12,6 +12,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const client: Client = await CreateClientObject(req.body);
   const response = await clientService.AddClient<Client>(client);
 
+  console.log(`status: ${response.status} \r\n result: \r\n ${JSON.stringify(response.result || response.error)}`);
   res.status(response.status).json(response.result || response.error);
 }
 

@@ -34,6 +34,7 @@ export enum Operations {
 
 // define the columns for each table
 export const ClientColumns: string[] = ['firstName', 'lastName', 'email', 'password', 'city', 'state', 'zipCode', 'RecordId'];
+export const EmployeeColumns: string[] = ['firstName', 'lastName', 'email', 'password', 'city', 'state', 'zipCode', 'RecordId'];
 export const DeviceColumns: string[] = ['firstName', 'lastName', 'email', 'password', 'city', 'state', 'zipCode', 'RecordId'];
 export const OrderColumns: string[] = ['firstName', 'lastName', 'email', 'password', 'city', 'state', 'zipCode', 'RecordId'];
 export const RequestLogColumns: string[] = ['firstName', 'lastName', 'email', 'password', 'city', 'state', 'zipCode', 'RecordId'];
