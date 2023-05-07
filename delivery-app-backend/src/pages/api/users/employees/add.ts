@@ -15,18 +15,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   res.status(response.status).json(response.result || response.error);
 }
 
-async function CreateEmployeeObject(client: EmployeeType): Promise<Employee> {
-  console.log(client);
+async function CreateEmployeeObject(employee: EmployeeType): Promise<Employee> {
+  console.log(employee);
   return await new Employee(
-    client.__createdtime__,
-    client.__updatedtime__,
-    client.password,
-    client.state,
-    client.city,
-    client.lastName,
-    client.zipCode,
-    client.email,
-    client.firstName,
-    client.RecordId
+    employee.__createdtime__,
+    employee.__updatedtime__,
+    employee.password,
+    employee.state,
+    employee.city,
+    employee.lastName,
+    employee.zipCode,
+    employee.email,
+    employee.firstName,
+    employee.RecordId
   ).hashPassword();
 }
