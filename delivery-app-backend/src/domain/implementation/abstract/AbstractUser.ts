@@ -12,6 +12,8 @@ export default class AbstractUser {
   zipCode: number;
   email: string;
   firstName: string;
+  isEmployee: boolean;
+  isAdmin: boolean;
   RecordId: string;
 
   // endregion
@@ -28,6 +30,8 @@ export default class AbstractUser {
     zipCode: number,
     email: string,
     firstName: string,
+    isEmployee: boolean,
+    isAdmin: boolean,
     RecordId: string
   ) {
     this.__createdtime__ = __createdtime__;
@@ -39,6 +43,8 @@ export default class AbstractUser {
     this.zipCode = zipCode;
     this.email = email;
     this.firstName = firstName;
+    this.isEmployee = isEmployee || false;
+    this.isAdmin = isAdmin || false;
     this.RecordId = RecordId || '';
   }
 

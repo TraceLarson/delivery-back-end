@@ -28,6 +28,8 @@ async function CreateClientObject(client: ClientType): Promise<Client> {
     client.zipCode,
     client.email,
     client.firstName,
+    client.isEmployee,
+    client.isAdmin,
     client.RecordId
   ).hashPassword();
 }

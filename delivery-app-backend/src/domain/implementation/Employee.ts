@@ -14,9 +14,11 @@ export default class Employee extends AbstractUser implements EmployeeType {
     zipCode: number,
     email: string,
     firstName: string,
+    isEmployee: boolean,
+    isAdmin: boolean,
     RecordId: string
   ) {
-    super(__createdtime__, __updatedtime__, password, state, city, lastName, zipCode, email, firstName, RecordId);
+    super(__createdtime__, __updatedtime__, password, state, city, lastName, zipCode, email, firstName, (isEmployee = true), isAdmin, RecordId);
   }
 
   // endregion

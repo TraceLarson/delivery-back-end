@@ -18,6 +18,8 @@ export type EmployeeType = {
   zipCode: number;
   email: string;
   firstName: string;
+  isEmployee: boolean;
+  isAdmin: boolean;
   RecordId: string;
 };
 
@@ -31,6 +33,8 @@ export type ClientType = {
   zipCode: number;
   email: string;
   firstName: string;
+  isEmployee: boolean;
+  isAdmin: boolean;
   RecordId: string;
 };
 
