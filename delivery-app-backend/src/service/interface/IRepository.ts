@@ -1,6 +1,6 @@
 import { ConnectionContext, DeleteResultType, InsertResultType, SelectResultType, UpdateResultType } from '@/util/types';
 
-export default interface Repository<T> {
+export default interface IRepository<T> {
   // region Properties
 
   Context: ConnectionContext;

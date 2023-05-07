@@ -19,19 +19,19 @@ export default class ClientService extends AbstractService implements IClientSer
     return await this.unitOfWork.Clients.Add<Client>(client);
   }
 
-  public async FindAll<Client>(): Promise<SelectResultType<Client | null>> {
+  public async FindAll<Client>(): Promise<SelectResultType<Client>> {
     return await this.unitOfWork.Clients.FindAll<Client>();
   }
 
-  public async FindByRecordId<Client>(recordId: string): Promise<SelectResultType<Client | null>> {
+  public async FindByRecordId<Client>(recordId: string): Promise<SelectResultType<Client>> {
     return await this.unitOfWork.Clients.FindUnique<Client>(recordId);
   }
 
-  public async RemoveClient<Client>(recordId: string): Promise<DeleteResultType<Client | null>> {
+  public async RemoveClient<Client>(recordId: string): Promise<DeleteResultType<Client>> {
     return await this.unitOfWork.Clients.Remove<Client>(recordId);
   }
 
-  public async UpdateClient<Client>(client: Client, recordId: string): Promise<UpdateResultType<Client | null>> {
+  public async UpdateClient<Client>(client: Client, recordId: string): Promise<UpdateResultType<Client>> {
     return await this.unitOfWork.Clients.Update<Client>(client, recordId);
   }
 

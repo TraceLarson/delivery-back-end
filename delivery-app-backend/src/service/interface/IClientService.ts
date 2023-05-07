@@ -6,13 +6,13 @@ export default interface IClientService {
 
   AddClient<Client>(client: Client): Promise<InsertResultType>;
 
-  FindAll<Client>(): Promise<SelectResultType<Client | null>>;
+  FindAll<Client>(): Promise<SelectResultType<Client>>;
 
-  FindByRecordId<Client>(recordId: string): Promise<SelectResultType<Client | null>>;
+  FindByRecordId<Client>(recordId: string): Promise<SelectResultType<Client>>;
 
-  RemoveClient<Client>(recordId: string): Promise<DeleteResultType<Client | null>>;
+  RemoveClient<Client>(recordId: string): Promise<DeleteResultType<Client>>;
 
-  UpdateClient<Client>(client: Client, recordId: string): Promise<UpdateResultType<Client | null>>;
+  UpdateClient<Client>(client: Client, recordId: string): Promise<UpdateResultType<Client>>;
 
   // endregion
 }

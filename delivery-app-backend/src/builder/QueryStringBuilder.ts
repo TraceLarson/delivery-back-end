@@ -58,7 +58,7 @@ export default class QueryStringBuilder {
   }
 
   public static buildDeleteQuery<T>(tableName: string, columns: string[], recordId: string): string {
-    let query: string = `DELETE FROM ${tableName} WHERE RecordId = '${recordId}';}`;
+    let query: string = `DELETE FROM ${tableName} WHERE RecordId = '${recordId}'`;
     return query;
   }
 

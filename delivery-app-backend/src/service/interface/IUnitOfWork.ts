@@ -5,7 +5,7 @@ import Device from '@/domain/implementation/Device';
 import Order from '@/domain/implementation/Order';
 import RequestLog from '@/domain/implementation/RequestLog';
 import UserLog from '@/domain/implementation/UserLog';
-import Repository from './IRepository';
+import IRepository from './IRepository';
 
 export default interface IUnitOfWork {
   // region Properties
@@ -26,7 +26,7 @@ export default interface IUnitOfWork {
 
   // region Behavior
 
-  CreateUowRepository<T>(tableName: string): Repository<T>;
+  CreateUowRepository<T>(tableName: string): IRepository<T>;
 
   // endregion
 }

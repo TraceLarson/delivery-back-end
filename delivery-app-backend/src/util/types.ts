@@ -46,20 +46,26 @@ export type InsertResultType = {
   error: string | null;
 };
 
+export type SelectAllResultType<T> = {
+  status: number;
+  result: T[] | null;
+  error: string | null;
+};
+
 export type SelectResultType<T> = {
-  status: number | null;
+  status: number;
   result: T[] | null;
   error: string | null;
 };
 
 export type DeleteResultType<T> = {
-  status: number | null;
+  status: number;
   result: any | T | null;
   error: string | null;
 };
 
 export type UpdateResultType<T> = {
-  status: number | null;
+  status: number;
   result: any | T | null;
   error: string | null;
 };
