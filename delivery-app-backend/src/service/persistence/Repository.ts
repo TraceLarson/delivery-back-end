@@ -1,9 +1,7 @@
 import OperationStringBuilder from '@/builder/OperationStringBuilder';
 import QueryStringBuilder from '@/builder/QueryStringBuilder';
-import Client from '@/domain/implementation/Client';
-import Employee from '@/domain/implementation/Employee';
 import IRepository from '@/service/interface/IRepository';
-import { Tables, ClientColumns, Operations, requestOptions, EmployeeColumns } from '@/util/DBConstants';
+import { Operations, requestOptions } from '@/util/DBConstants';
 import { AddResultType, ConnectionContext, DeleteResultType, InsertResultType, UpdateResultType } from '@/util/types';
 import { SelectResultType } from '../../util/types';
 
