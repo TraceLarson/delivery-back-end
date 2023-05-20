@@ -14,16 +14,11 @@ const unitOfWork: IUnitOfWork = new UnitOfWork();
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { employeeId } = req.query;
   const employeeService: IEmployeeService = serviceFactory.CreateEmployeeService(unitOfWork);
-  const clientService: IClientService = serviceFactory.CreateClientService(unitOfWork);
 
   const foundEmployees = await employeeService.FindByRecordId<Employee>(employeeId as string).then((result) => {
     console.log(`Found ${result.result?.length} employees`);
     return result.result;
   });
 
-  const foundClients = await clientService.FindByRecordId<Client>(employeeId as string).then((result) => {
-    console.log(`Found ${result.result?.length} clients`);
-    return result.result;
-  });
-  return res.status(201).json({ employees: foundEmployees, clients: foundClients });
+  return res.status(201).json({ employees: foundEmployees });
 }

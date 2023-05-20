@@ -18,18 +18,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
 async function CreateClientObject(client: ClientType): Promise<Client> {
   console.log(client);
-  return await new Client(
-    client.__createdtime__,
-    client.__updatedtime__,
-    client.password,
-    client.state,
-    client.city,
-    client.lastName,
-    client.zipCode,
-    client.email,
-    client.firstName,
-    client.isEmployee,
-    client.isAdmin,
-    client.RecordId
-  ).hashPassword();
+  const newClient = new Client();
+  newClient.__createdtime__ = client.__createdtime__;
+  newClient.__updatedtime__ = client.__updatedtime__;
+  newClient.password = client.password;
+  newClient.state = client.state;
+  newClient.city = client.city;
+  newClient.lastName = client.lastName;
+  newClient.zipCode = client.zipCode;
+  newClient.email = client.email;
+  newClient.firstName = client.firstName;
+  newClient.isEmployee = client.isEmployee;
+  newClient.isAdmin = client.isAdmin;
+  newClient.RecordId = client.RecordId;
+
+  return await newClient.hashPassword();
 }

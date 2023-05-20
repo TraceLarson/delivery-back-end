@@ -18,18 +18,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
 async function CreateEmployeeObject(employee: EmployeeType, isAdmin: boolean): Promise<Employee> {
   console.log(employee);
-  return await new Employee(
-    employee.__createdtime__,
-    employee.__updatedtime__,
-    employee.password,
-    employee.state,
-    employee.city,
-    employee.lastName,
-    employee.zipCode,
-    employee.email,
-    employee.firstName,
-    employee.isEmployee,
-    isAdmin,
-    employee.RecordId
-  ).hashPassword();
+  const newEmployee = new Employee();
+  newEmployee.__createdtime__ = employee.__createdtime__;
+  newEmployee.__updatedtime__ = employee.__updatedtime__;
+  newEmployee.password = employee.password;
+  newEmployee.state = employee.state;
+  newEmployee.city = employee.city;
+  newEmployee.lastName = employee.lastName;
+  newEmployee.zipCode = employee.zipCode;
+  newEmployee.email = employee.email;
+  newEmployee.firstName = employee.firstName;
+  newEmployee.isEmployee = employee.isEmployee;
+  newEmployee.isAdmin = isAdmin;
+  employee.RecordId = employee.RecordId;
+
+  return await newEmployee.hashPassword();
 }

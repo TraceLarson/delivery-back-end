@@ -3,49 +3,57 @@ import Encryption from '../../../util/Encryption';
 export default class AbstractUser {
   // region Properties
 
-  __createdtime__: number;
-  __updatedtime__: number;
-  password: string;
-  state: string;
-  city: string;
-  lastName: string;
-  zipCode: number;
-  email: string;
-  firstName: string;
-  isEmployee: boolean;
-  isAdmin: boolean;
-  RecordId: string;
+  __createdtime__: number = Date.now();
+
+  __updatedtime__: number = Date.now();
+
+  password: string = '';
+
+  state: string = '';
+
+  city: string = '';
+
+  lastName: string = '';
+
+  zipCode: number = 0;
+
+  email: string = '';
+
+  firstName: string = '';
+
+  isEmployee: boolean = false;
+
+  isAdmin: boolean = false;
+
+  RecordId: string = '';
 
   // endregion
 
   // region Constructors
 
-  constructor(
-    __createdtime__: number,
-    __updatedtime__: number,
-    password: string,
-    state: string,
-    city: string,
-    lastName: string,
-    zipCode: number,
-    email: string,
-    firstName: string,
-    isEmployee: boolean,
-    isAdmin: boolean,
-    RecordId: string
-  ) {
-    this.__createdtime__ = __createdtime__;
-    this.__updatedtime__ = __updatedtime__;
-    this.password = password;
-    this.state = state;
-    this.city = city;
-    this.lastName = lastName;
-    this.zipCode = zipCode;
-    this.email = email;
-    this.firstName = firstName;
-    this.isEmployee = isEmployee || false;
-    this.isAdmin = isAdmin || false;
-    this.RecordId = RecordId || '';
+  constructor() // password: string, // __updatedtime__: number, // __createdtime__: number,
+  // state: string,
+  // city: string,
+  // lastName: string,
+  // zipCode: number,
+  // email: string,
+  // firstName: string,
+  // isEmployee: boolean,
+  // isAdmin: boolean,
+  // RecordId: string
+  {
+    // this.__createdtime__ = __createdtime__;
+    // this.__updatedtime__ = __updatedtime__;
+    // this.password = password;
+    // this.state = state;
+    // this.city = city;
+    // this.lastName = lastName;
+    // this.zipCode = zipCode;
+    // this.email = email;
+    // this.firstName = firstName;
+    // this.isEmployee = isEmployee || false;
+    // this.isAdmin = isAdmin || false;
+    // this.RecordId = RecordId || '';
   }
 
   // endregion
