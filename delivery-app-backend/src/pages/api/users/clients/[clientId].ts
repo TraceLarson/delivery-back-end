@@ -1,12 +1,10 @@
-import { NextApiRequest, NextApiResponse } from 'next';
 import Client from '@/domain/implementation/Client';
-import Employee from '@/domain/implementation/Employee';
-import ServiceFactory from '@/service/ServiceFactory';
 import IClientService from '@/service/interface/IClientService';
-import IEmployeeService from '@/service/interface/IEmployeeService';
 import IServiceFactory from '@/service/interface/IServiceFactory';
 import IUnitOfWork from '@/service/interface/IUnitOfWork';
+import ServiceFactory from '@/service/ServiceFactory';
 import UnitOfWork from '@/service/persistence/UnitOfWork';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 const serviceFactory: IServiceFactory = new ServiceFactory();
 const unitOfWork: IUnitOfWork = new UnitOfWork();
